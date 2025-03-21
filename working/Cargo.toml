@@ -1,0 +1,11 @@
+[package]
+name = "working"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+vectors = { path = "../vectors" }
+matrices = { path = "../matrices" }
+complex = { path = "../complex" }
+rand = "0.9.0"
