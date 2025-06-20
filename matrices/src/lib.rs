@@ -1112,7 +1112,7 @@ impl Decomposer {
         let mut vectors: Vec<Matrix> = vec![];
 
         for k in 1..=min(n, m) {
-            let x = matrix.sub_vector((k, m), k);
+            let x = R.sub_vector((k, m), k);
             let c = x.sign(1) * x.magnitude();
             let mut vk = &(c * &Vector::canonical(1, m - k + 1)) + &x;
             vk = vk.normalize();
@@ -1120,7 +1120,7 @@ impl Decomposer {
             let mut proj = R.sub_matrix((k, m), (k, n));
             let vk_matrix = Matrix::create_with_vectors(&[vk]);
             proj = 2.0 * &(&vk_matrix.transpose() * &(&(vk_matrix) * &proj));
-
+    
             R.subtract_by_sub((k, m), (k, n), &proj);
             vectors.push(vk_matrix);
         }

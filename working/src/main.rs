@@ -25,11 +25,13 @@ fn random_matrix(m: usize, n: usize) -> Matrix {
 }
 
 fn main() {
-  let k = Complex::new(5.0, -10.0);
-  let t = Complex::new(2.0, 1.0);
-  println!("{}", &k + &t);
-  println!("{}", &k - &t);
-  println!("{}", &k * &t);
-  println!("{}", &k / &t);
-  println!("{}", t.pow_complex(&k));
+  let k = random_matrix(30, 30);
+
+  let decomposer = Decomposer::new();
+  let gs = decomposer.classical_gs_naive(&k);
+  let (r, _) = gs;
+  println!("gs");
+  let householder = decomposer.householder(&k);
+  let r = householder.get_r();
+  println!("householder");
 }   
